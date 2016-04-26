@@ -9,6 +9,15 @@
 import UIKit
 
 class ViewController: UIViewController {
+  var history: Array<String> = []
+  
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if let destinationViewController = segue.destinationViewController as? HistoryViewController {
+      destinationViewController.history = history
+    }
+  
+  }
+  
   func add(left: Int, right: Int)-> Int {
     return left + right
   }
@@ -80,6 +89,7 @@ class ViewController: UIViewController {
       return
     }
     
+    history.append(operation.text!)
     currentOperation = ""
     
     let selectedOperation = arguments[1]
